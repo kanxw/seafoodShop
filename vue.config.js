@@ -1,7 +1,7 @@
 const path = require('path');
-//const rghxmangeurl = "http://10.0.1.251:9999";
+const rghxmangeurl = "http://10.0.1.251:9999";
 //const rghxmangeurl = "http://10.0.1.109:2008";//萝莉
-const rghxmangeurl = "https://test.lenxdt.com/";//测试接口
+//const rghxmangeurl = "https://test.lenxdt.com/";//测试接口
 //const rghxclienturl = 'http://api.linjingrong.cn/webapi';  
 const rghxclienturl = 'http://10.0.1.157:9000';  
 

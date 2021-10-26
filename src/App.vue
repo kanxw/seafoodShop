@@ -11,13 +11,14 @@ export default {
     return {};
   },
   created() {
-    // 在页面加载时读取sessionStorage里的状态信息
-    if (sessionStorage.getItem("store")) {
+    //在页面加载时读取sessionStorage里的状态信息
+    let newStore = sessionStorage.getItem("store");console.log(newStore,'this is newStore')
+    if (newStore) {
       this.$store.replaceState(
         Object.assign(
           {},
           this.$store.state,
-          JSON.parse(sessionStorage.getItem("store"))
+          JSON.parse(newStore)
         )
       );
     }
@@ -28,6 +29,7 @@ export default {
       sessionStorage.setItem("store", JSON.stringify(this.$store.state));
     });
   },
+  beforeUpdate(){}
 };
 </script>
 

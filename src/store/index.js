@@ -1,24 +1,45 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
+import oldState from './state'
 import getters from './getters';
 
 Vue.use(Vuex)
+let cloneDeep =(data)=>{
+    //copy一份数据
+    return JSON.parse(JSON.stringify(data))
+  }
+
 const store = new Vuex.Store({
-    state:{
-        user:{
-            access_token:'',
-            refresh_token:'',
-        },
-        meetingcode: 1002,
-        userType: 0,//0为订货端，1为管理端
-    },
+    strict: process.env.NODE_ENV !== 'production',
+    state: cloneDeep(oldState),
     mutations:{
         user_token(state, token){
             state.user.access_token=token;
-        }
+        },
+        menuActive(state, active){
+            state.menu.active = active;
+        },
+        menuOpeneds(state, arr){
+            state.menu.menuOpeneds = arr;
+        },
+        logout(state){
+            for(let key in oldState){
+                state[key] = cloneDeep(oldState[key])
+            }
+        },
+        topTabsData(state, str){
+            state.menu.tabsData = str;
+        },
     },
-
-    //getters,
+    actions:{
+        user_token({commit}){
+            commit('user_token')
+        },
+        logout({commit}){
+            commit('logout')
+        },
+    },
+    getters,
 })
 
 export default store;
